@@ -1,9 +1,9 @@
-package service.game;
+package foxandhounds.service.game;
 
-import model.GameState;
+import foxandhounds.model.GameState;
+import foxandhounds.service.util.MapUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.util.MapUtil;
 
 public class GameController {
 

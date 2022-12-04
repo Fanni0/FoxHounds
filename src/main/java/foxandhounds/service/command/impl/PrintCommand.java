@@ -1,10 +1,10 @@
-package service.command.impl;
+package foxandhounds.service.command.impl;
 
-import model.GameState;
+import foxandhounds.model.GameState;
+import foxandhounds.service.command.Command;
+import foxandhounds.ui.MapPrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.command.Command;
-import ui.MapPrinter;
 
 public class PrintCommand implements Command {
     private static final Logger LOGGER = LoggerFactory.getLogger(PrintCommand.class);
@@ -27,6 +27,7 @@ public class PrintCommand implements Command {
 
     @Override
     public void process(String input) {
+        LOGGER.info("Performing print command");
         mapPrinter.printMap(gameState.getMapVO());
 
     }

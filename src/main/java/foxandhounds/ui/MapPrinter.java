@@ -1,13 +1,13 @@
-package ui;
+package foxandhounds.ui;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import model.MapVO;
+import foxandhounds.model.MapVO;
+import foxandhounds.service.util.MapUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.util.MapUtil;
 
 public class MapPrinter {
     private static final Logger LOGGER = LoggerFactory.getLogger(MapPrinter.class);
@@ -29,8 +29,15 @@ public class MapPrinter {
 
     public void printMap(MapVO mapVO) {
         LOGGER.info("Printing map to stdout");
+        List<String> Stringindex = new ArrayList<>();
+        for (int i = 0; i < (mapVO.getNumberofrows() + 1); i++) {
+            Stringindex.add("|");
+            Stringindex.add(valueToString(i));
+        }
+        Stringindex.add("|");
+        String firstrow = String.join("", Stringindex);
+        printWrapper.printLine(firstrow);
         printWrapper.printLine((getSeparator(separatorh, getSeparatorWidth(mapVO))));
-
         for (int rowIndex = 0; rowIndex < mapVO.getNumberofrows(); rowIndex++) {
             String rowToPrint = getRowToPrint(mapVO, rowIndex);
             printWrapper.printLine(rowToPrint);
@@ -42,8 +49,9 @@ public class MapPrinter {
         List<String> row = getRowAsStringList(mapVO, rowIndex);
         List<List<String>> boxPartsList = getBoxPartsOfRow(row);
         List<String> boxParts = joinBoxParts(boxPartsList);
+        String columnindex = valueToString(rowIndex + 1);
 
-        return separatorv + String.join(separatorv, boxParts) + separatorv;
+        return columnindex + separatorv + separatorv + String.join(separatorv, boxParts) + separatorv;
     }
 
     private List<String> getRowAsStringList(MapVO mapVO, int rowIndex) {
@@ -96,7 +104,8 @@ public class MapPrinter {
 
     private int getSeparatorWidth(MapVO mapVO) {
         int numberOfBoxes = mapVO.getNumberofcolumns() / boxWidth;
-        return (boxWidth * 3 + (boxWidth - 1)) * numberOfBoxes + (numberOfBoxes - 1) * 2 + 4;
+        //return (boxWidth * 3 + (boxWidth - 1)) * numberOfBoxes + (numberOfBoxes - 1) * 2 + 4;
+        return (mapVO.getNumberofrows() * 2 + 3);
     }
 
 

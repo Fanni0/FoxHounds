@@ -1,4 +1,4 @@
-package service.exception;
+package foxandhounds.service.exception;
 
 public class PutException extends Exception {
 

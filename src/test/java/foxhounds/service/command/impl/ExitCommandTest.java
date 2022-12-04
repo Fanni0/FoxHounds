@@ -1,12 +1,12 @@
-package foxhounds.service.command;
+package foxhounds.service.command.impl;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import model.GameState;
+import foxandhounds.model.GameState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import service.command.impl.ExitCommand;
+import foxandhounds.service.command.impl.ExitCommand;
 
 public class ExitCommandTest {
 

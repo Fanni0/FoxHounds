@@ -46,7 +46,7 @@
                 <configuration>
                     <excludes>
                         <exclude>foxhounds/model/*</exclude>
-                        <exclude>foxhounds/Main.*</exclude>
+                        <exclude>foxhounds/foxandhounds.Main.*</exclude>
                         <exclude>foxhounds/ui/PrintWrapper.*</exclude>
                     </excludes>
                 </configuration>
@@ -69,6 +69,16 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <excludes>
+                                <exclude>foxandhounds/model/*</exclude>
+                                <exclude>foxandhounds/Main.*</exclude>
+                                <exclude>foxandhounds/ui/PrintWrapper.*</exclude>
+                                <exclude>foxandhounds/service/exception/*</exclude>
+                                <exclude>foxandhounds/config/*</exclude>
+                                <exclude>foxandhounds/user/*</exclude>
+                                <exclude>foxandhounds/service/map/parser/MapParser.*</exclude>
+                                <exclude>foxandhounds/service/command/performer/PutPerformer.*</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
@@ -76,7 +86,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.0</minimum>
+                                            <minimum>0.8</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -98,7 +108,7 @@
                     <configLocation>checkstyle.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
-                    <failsOnError>false</failsOnError>
+                    <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
                 </configuration>
                 <dependencies>
@@ -120,7 +130,35 @@
             </plugin>
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>checkstyle</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.19</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -137,6 +175,11 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.199</version>
         </dependency>
     </dependencies>
 

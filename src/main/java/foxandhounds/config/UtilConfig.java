@@ -1,9 +1,9 @@
-package config;
+package foxandhounds.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import foxandhounds.service.util.CollectionUtil;
 import foxandhounds.service.util.MapUtil;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class UtilConfig {

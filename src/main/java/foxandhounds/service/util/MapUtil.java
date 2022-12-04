@@ -1,9 +1,9 @@
-package service.util;
+package foxandhounds.service.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.MapVO;
+import foxandhounds.model.MapVO;
 
 public class MapUtil {
     public List<Integer> getRowofMap(MapVO mapVO, int rowIndex) {
@@ -13,7 +13,17 @@ public class MapUtil {
         for (int i = 0; i < mapVO.getNumberofcolumns(); i++) {
             result.add(map[rowIndex][i]);
         }
-        //System.out.println(result);
+        return result;
+    }
+
+    public List<Integer> getColumnofMap(MapVO mapVO, int columnIndex) {
+        List<Integer> result = new ArrayList<>();
+
+        int[][] map = mapVO.getValues();
+        for (int i = 0; i < mapVO.getNumberofrows(); i++) {
+            result.add(map[i][columnIndex]);
+        }
+
         return result;
     }
 

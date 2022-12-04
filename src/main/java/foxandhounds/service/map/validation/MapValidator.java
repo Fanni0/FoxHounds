@@ -1,7 +1,7 @@
-package service.map.validation;
+package foxandhounds.service.map.validation;
 
-import model.MapVO;
-import service.exception.MapValidationException;
+import foxandhounds.model.MapVO;
+import foxandhounds.service.exception.MapValidationException;
 
 public interface MapValidator {
 

@@ -1,26 +1,25 @@
-package service.command.impl;
+package foxandhounds.service.command.impl;
 
 import java.io.IOException;
 import java.util.regex.Pattern;
 
-import model.GameState;
-import model.MapVO;
+import foxandhounds.model.GameState;
+import foxandhounds.model.MapVO;
+import foxandhounds.service.command.Command;
+import foxandhounds.service.command.performer.PutPerformer;
+import foxandhounds.service.exception.MapValidationException;
+import foxandhounds.service.exception.PutException;
+import foxandhounds.service.map.validation.MapValidator;
+import foxandhounds.ui.MapPrinter;
+import foxandhounds.ui.PrintWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.command.Command;
-import service.command.performer.PutPerformer;
-import service.exception.MapValidationException;
-import service.exception.PutException;
-import service.map.validation.MapValidator;
-import service.util.CurrentPosition;
-import ui.MapPrinter;
-import ui.PrintWrapper;
 
 public class PutCommand implements Command {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PutCommand.class);
 
-    private static final String put_command_regex = "^put [0-3] [0-3] [4,7]$";
+    private static final String put_command_regex = "^put [1-8] [1-8] [4,7]$";
     private static final String put_error_message = "Can't write to an occupied position";
     private static final String map_validation_error = "Can't write to that position";
 
@@ -30,7 +29,6 @@ public class PutCommand implements Command {
     private final MapPrinter mapPrinter;
     private final PrintWrapper printWrapper;
 
-    private CurrentPosition position;
     private MapVO mapVO;
 
     public PutCommand(GameState gameState, PutPerformer putPerformer, MapValidator mapValidator, MapPrinter mapPrinter,
@@ -58,7 +56,7 @@ public class PutCommand implements Command {
         LOGGER.info("Performing put command with rowIndex = {}, columnIndex = {}, character = {}", rowIndex, columnIndex, character);
 
         try {
-            MapVO newMap = putPerformer.perform(gameState.getMapVO(), rowIndex, columnIndex, character);
+            MapVO newMap = putPerformer.perform(gameState.getMapVO(), (rowIndex - 1), (columnIndex - 1), character);
             mapValidator.validate(newMap);
             gameState.setMapVO(newMap);
 

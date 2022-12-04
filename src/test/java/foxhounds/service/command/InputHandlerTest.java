@@ -1,4 +1,4 @@
-package foxhounds.service.command.impl;
+package foxhounds.service.command;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import service.command.Command;
-import service.command.InputHandler;
+import foxandhounds.service.command.Command;
+import foxandhounds.service.command.InputHandler;
 
 @ExtendWith(MockitoExtension.class)
 public class InputHandlerTest {

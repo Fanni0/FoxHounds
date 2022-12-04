@@ -1,4 +1,4 @@
-package foxhounds.service.map.reader;
+package foxhounds.service.map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -8,19 +8,19 @@ import static org.mockito.Mockito.verify;
 
 import java.util.List;
 
-import model.MapVO;
+import foxandhounds.model.MapVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import service.exception.MapParseException;
-import service.exception.MapReadException;
-import service.exception.MapValidationException;
-import service.map.MapReaderFacade;
-import service.map.parser.MapParser;
-import service.map.reader.MapReader;
-import service.map.validation.MapValidator;
+import foxandhounds.service.exception.MapParseException;
+import foxandhounds.service.exception.MapReadException;
+import foxandhounds.service.exception.MapValidationException;
+import foxandhounds.service.map.MapReaderFacade;
+import foxandhounds.service.map.parser.MapParser;
+import foxandhounds.service.map.reader.MapReader;
+import foxandhounds.service.map.validation.MapValidator;
 
 @ExtendWith(MockitoExtension.class)
 public class MapReaderFacadeTest {
@@ -30,7 +30,7 @@ public class MapReaderFacadeTest {
             "row2"
     );
 
-    private static final MapVO map_vo = new MapVO(0,0,null,null);
+    private static final MapVO map_vo = new MapVO(0, 0, null, null, null, null);
 
     @Mock
     private MapReader mapReader;
@@ -44,7 +44,7 @@ public class MapReaderFacadeTest {
     private MapReaderFacade underTest;
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() {
         underTest = new MapReaderFacade(mapReader, mapParser, mapValidator);
     }
 
@@ -80,7 +80,7 @@ public class MapReaderFacadeTest {
     }
 
     @Test
-    public void TestReadMapValidationFail() throws MapReadException, MapParseException, MapValidationException{
+    public void TestReadMapValidationFail() throws MapReadException, MapParseException, MapValidationException {
         given(mapReader.read()).willReturn(raw_map);
         given(mapParser.parse(raw_map)).willReturn(map_vo);
         doThrow(MapValidationException.class).when(mapValidator).validate(map_vo);

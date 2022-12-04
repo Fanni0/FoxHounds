@@ -9,12 +9,12 @@ import foxandhounds.service.map.validation.MapValidator;
 import foxandhounds.service.util.CollectionUtil;
 import foxandhounds.service.util.MapUtil;
 
-public class MapWayValidator implements MapValidator {
+public class MapByRowValidator implements MapValidator {
 
     private final MapUtil maputil;
     private final CollectionUtil collectionutil;
 
-    public MapWayValidator(MapUtil maputil, CollectionUtil collectionutil) {
+    public MapByRowValidator(MapUtil maputil, CollectionUtil collectionutil) {
         this.maputil = maputil;
         this.collectionutil = collectionutil;
     }
@@ -31,23 +31,7 @@ public class MapWayValidator implements MapValidator {
         List<Integer> nonZeroValues = collectionutil.collectValues(row);
 
         if (!collectionutil.contains(nonZeroValues)) {
-            throw new InvalidRowException("A row can only contain distinct values");
+            throw new InvalidRowException("A row can only contain 0, 4 or 7");
         }
     }
-
-    /*@Override
-    public void validate(MapVO mapVO) {
-        int numberofrows = mapVO.getNumberofrows();
-        int numberofcolumns = mapVO.getNumberofcolumns();
-
-
-        for (int i = 0; i < numberofrows; i++) {
-            List<Integer> rowofmap = maputil.getRowofMap(mapVO, i);
-            //List<Character> nonZeroValues = collectionutil.collectNonZeroValues(rowofmap);
-            if (collectionutil.contains(collectionutil.collectNonZeroValues(rowofmap))) {
-                throw new MapValidationException("Invalid character");
-            }
-            //System.out.println(collectionutil.collectNonZeroValues(rowofmap));
-        }
-    }*/
 }

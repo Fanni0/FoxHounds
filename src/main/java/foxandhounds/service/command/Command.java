@@ -1,4 +1,4 @@
-package service.command;
+package foxandhounds.service.command;
 
 public interface Command {
     boolean canProcess(String input);

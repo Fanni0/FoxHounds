@@ -1,4 +1,4 @@
-package service.command;
+package foxandhounds.service.command;
 
 import java.util.List;
 

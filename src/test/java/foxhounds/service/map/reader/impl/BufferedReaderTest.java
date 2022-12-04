@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import service.exception.MapReadException;
-import service.map.reader.impl.BufferedReaderMapReader;
+import foxandhounds.service.exception.MapReadException;
+import foxandhounds.service.map.reader.impl.BufferedReaderMapReader;
 
 @ExtendWith(MockitoExtension.class)
 public class BufferedReaderTest {

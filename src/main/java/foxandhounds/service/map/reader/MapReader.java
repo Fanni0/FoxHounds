@@ -1,4 +1,4 @@
-package service.map.reader;
+package foxandhounds.service.map.reader;
 
 import java.util.List;
 

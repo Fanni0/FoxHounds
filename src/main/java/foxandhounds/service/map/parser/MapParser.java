@@ -1,12 +1,12 @@
-package service.map.parser;
+package foxandhounds.service.map.parser;
 
 import java.util.List;
 import java.util.regex.Pattern;
 
-import model.MapVO;
+import foxandhounds.model.MapVO;
+import foxandhounds.service.exception.MapParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.exception.MapParseException;
 
 public class MapParser {
     private static final Logger LOGGER = LoggerFactory.getLogger(MapParser.class);
@@ -15,10 +15,14 @@ public class MapParser {
 
     private final int numberofrows;
     private final int numberofcolumns;
+    private final int[] foxpos;
+    private final int[][] houndpos;
 
-    public MapParser(int numberofrows, int numberofcolumns) {
+    public MapParser(int numberofrows, int numberofcolumns, int[] foxpos, int[][] houndpos) {
         this.numberofrows = numberofrows;
         this.numberofcolumns = numberofcolumns;
+        this.foxpos = foxpos;
+        this.houndpos = houndpos;
     }
 
     public MapVO parse(List<String> rawMap) throws MapParseException {
@@ -31,13 +35,13 @@ public class MapParser {
         int[][] values = getValues(rawMap);
         boolean[][] endrow = getEndrow(values);
 
-        return new MapVO(numberofrows, numberofcolumns, values, endrow);
+
+        return new MapVO(numberofrows, numberofcolumns, values, endrow, foxpos, houndpos);
     }
 
     private int[][] getValues(List<String> rawMap) {
         int[][] result = new int[numberofrows][numberofcolumns];
         for (int i = 0; i < numberofrows; i++) {
-            //result[i] = new int[numberofcolumns];
             String row = rawMap.get(i);
             String[] numbers = row.split("");
             for (int j = 0; j < numberofcolumns; j++) {
@@ -75,7 +79,7 @@ public class MapParser {
         }
     }
 
-    private void checkValues(List<String> rawMap) throws  MapParseException {
+    private void checkValues(List<String> rawMap) throws MapParseException {
         for (String row : rawMap) {
             if (!Pattern.matches(valid_row_regex, row)) {
                 throw new MapParseException("Row contains invalid characters!");

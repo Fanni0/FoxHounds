@@ -1,16 +1,16 @@
-package service.map;
+package foxandhounds.service.map;
 
 import java.util.List;
 
-import model.MapVO;
+import foxandhounds.model.MapVO;
+import foxandhounds.service.exception.MapParseException;
+import foxandhounds.service.exception.MapReadException;
+import foxandhounds.service.exception.MapValidationException;
+import foxandhounds.service.map.parser.MapParser;
+import foxandhounds.service.map.reader.MapReader;
+import foxandhounds.service.map.validation.MapValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import service.exception.MapParseException;
-import service.exception.MapReadException;
-import service.exception.MapValidationException;
-import service.map.parser.MapParser;
-import service.map.reader.MapReader;
-import service.map.validation.MapValidator;
 
 public class MapReaderFacade {
 

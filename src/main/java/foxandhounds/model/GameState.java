@@ -1,4 +1,4 @@
-package model;
+package foxandhounds.model;
 
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -28,6 +28,7 @@ public class GameState {
     public void setUserExit(boolean userExit) {
         this.userExit = userExit;
     }
+
 
     @Override
     public boolean equals(Object o) {

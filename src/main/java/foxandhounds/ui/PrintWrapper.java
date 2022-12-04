@@ -1,4 +1,4 @@
-package ui;
+package foxandhounds.ui;
 
 public class PrintWrapper {
 

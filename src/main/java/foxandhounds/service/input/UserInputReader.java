@@ -1,4 +1,4 @@
-package service.input;
+package foxandhounds.service.input;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class UserInputReader {
         try {
             input = reader.readLine();
         } catch (IOException e) {
-            LOGGER.error("Exception occurred while reading user input");
+            LOGGER.error("Exception occurred while reading user input", e);
         }
         return input;
     }

@@ -1,12 +1,8 @@
 package foxandhounds.user;
 
-import java.util.Collections;
-import java.util.List;
+public interface UserRepository {
 
-public class UserRepositoryImpl implements UserRepository {
+    void score(int value);
 
-    @Override
-    public List<User> findall() {
-        return Collections.emptyList();
-    }
+    int highscore();
 }
